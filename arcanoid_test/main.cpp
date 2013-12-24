@@ -13,14 +13,11 @@
 
 #include "CRectangle.h"
 
+#include "CGameHud.h"
+
 
 int main(int argc, char** args)
 {
-	CDraw* CDrawn = new CDraw();
-	CRectangle* bita1 = new CRectangle(0, 0);
-		bita1->setSize(100, 100);
-
-	CDrawn->addDrawObject(bita1);
-	CDrawn->initWindow(argc, args);
+	CGameHud* CGameHudInstance = new CGameHud(argc, args);
 	return 0;
 }

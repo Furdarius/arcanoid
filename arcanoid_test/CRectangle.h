@@ -10,8 +10,8 @@ class CRectangle : public CDrawObject
 
 	public:
 		CRectangle(
-            int x, 
-			int y, 
+            int x = 0, 
+			int y = 0, 
 			int r = 1, 
 			int g = 1, 
 			int b = 1, 

@@ -18,10 +18,10 @@ void CRectangle::draw()
 	int sizeH = size[1];
 
 	glBegin(GL_POLYGON);
-        glVertex2f(posX, posY); // bottom - left
-        glVertex2f(posX + sizeW, posY); // bottom - right
-        glVertex2f(posX + sizeW, posY + sizeH); // top - right
-        glVertex2f(posX, posY + sizeH); // top - left
+        glVertex2f(posX, posY); // top - left
+        glVertex2f(posX + sizeW, posY); // top - right
+        glVertex2f(posX + sizeW, posY + sizeH); // bottom - right
+		glVertex2f(posX, posY + sizeH); // bottom - left
 	glEnd();
 }
 

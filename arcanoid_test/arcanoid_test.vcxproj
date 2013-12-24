@@ -75,12 +75,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CDraw.cpp" />
+    <ClCompile Include="CGameHud.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CDraw.h" />
     <ClInclude Include="CDrawObject.h" />
+    <ClInclude Include="CGameHud.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CVector2D.h" />
   </ItemGroup>
