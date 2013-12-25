@@ -2,6 +2,7 @@
 
 #include "CDraw.h"
 #include "CRectangle.h"
+#include "CCircle.h"
 
 class CGameHud
 {
@@ -11,6 +12,8 @@ class CGameHud
 		// HUD elements:
 		CRectangle* batTop;
 		CRectangle* batBottom;
+
+		CCircle* Ball;
 
 	public:
 		// Settings:

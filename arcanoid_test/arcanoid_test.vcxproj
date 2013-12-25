@@ -74,12 +74,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CCircle.cpp" />
     <ClCompile Include="CDraw.cpp" />
     <ClCompile Include="CGameHud.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CCircle.h" />
     <ClInclude Include="CDraw.h" />
     <ClInclude Include="CDrawObject.h" />
     <ClInclude Include="CGameHud.h" />

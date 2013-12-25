@@ -14,6 +14,8 @@ CGameHud::CGameHud(int argc, char** args)
 
 	batPadding = batHeigth / 2;
 
+	ballRadius = fWindowWidth * 0.2;
+
 	float screenWidth = GetSystemMetrics(SM_CXSCREEN);
 	float screenHeigth = GetSystemMetrics(SM_CYSCREEN);
 
@@ -26,14 +28,18 @@ CGameHud::CGameHud(int argc, char** args)
 	batBottom = new CRectangle();
 		batBottom->setPosition(fWindowWidth / 2 - batWidth / 2, fWindowHeigth - batHeigth - batPadding);
 		batBottom->setSize(batWidth, batHeigth);
+		CDrawnInstance->addDrawObject(batBottom);
 	/*
 	batTop = new CRectangle();
 		batTop->setPosition(fWindowWidth / 2 - batWidth / 2, batPadding);
 		batTop->setSize(batWidth, batHeigth);
+		CDrawnInstance->addDrawObject(batTop);
 	*/
 
-	CDrawnInstance->addDrawObject(batBottom);
-	//CDrawnInstance->addDrawObject(batTop);
+	Ball = new CCircle();
+		Ball->setRadius(ballRadius);
+		Ball->setPosition(Ball->getRadius(), Ball->getRadius());
+	CDrawnInstance->addDrawObject(Ball);
 
 	CDrawnInstance->initWindow(argc, args);
 }

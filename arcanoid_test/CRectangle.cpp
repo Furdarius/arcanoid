@@ -9,13 +9,13 @@ void CRectangle::draw()
 	std::vector<int> position = getPosition();
 	std::vector<int> size = getSize();
 
-	glColor3f(color[0],color[1],color[2]);
-
 	int posX = position[0];
 	int posY = position[1];
 
 	int sizeW = size[0];
 	int sizeH = size[1];
+
+	glColor3f(color[0],color[1],color[2]);
 
 	glBegin(GL_POLYGON);
         glVertex2f(posX, posY); // top - left
