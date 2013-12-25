@@ -17,11 +17,11 @@ void CCircle::draw()
 	double _tmpPoint;
     glBegin(GL_TRIANGLE_FAN);
 		glVertex2f(posX, posY);
-		for( int i = 0; i <= radius; i++ ) 
+		for( int i = 0; i <= radius + 1; i++ ) 
 		{
 			_tmpPoint = (float)i / radius * 3.1415f * 2.0f;
-			glVertex2f(posX + cos(_tmpPoint) * (radius / 10), 
-				posY + sin(_tmpPoint) * (radius / 10));
+			glVertex2f(posX + cos(_tmpPoint) * radius, 
+				posY + sin(_tmpPoint) * radius);
 		}
     glEnd();
 }

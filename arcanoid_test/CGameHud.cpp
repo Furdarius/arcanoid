@@ -14,7 +14,7 @@ CGameHud::CGameHud(int argc, char** args)
 
 	batPadding = batHeigth / 2;
 
-	ballRadius = fWindowWidth * 0.2;
+	ballRadius = fWindowWidth * 0.025;
 
 	float screenWidth = GetSystemMetrics(SM_CXSCREEN);
 	float screenHeigth = GetSystemMetrics(SM_CYSCREEN);
