@@ -6,7 +6,7 @@
 void CCircle::draw()
 {
 	std::vector<int> color = getColor();
-	std::vector<int> position = getPosition();
+	std::vector<float> position = getPosition();
 	float radius = getRadius();
 
 	int posX = position[0];

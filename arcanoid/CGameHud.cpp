@@ -29,16 +29,12 @@ CGameHud::CGameHud(int argc, char** args)
 		batBottom->setPosition(fWindowWidth / 2 - batWidth / 2, fWindowHeigth - batHeigth - batPadding);
 		batBottom->setSize(batWidth, batHeigth);
 		CDrawnInstance->addDrawObject(batBottom);
-	/*
-	batTop = new CRectangle();
-		batTop->setPosition(fWindowWidth / 2 - batWidth / 2, batPadding);
-		batTop->setSize(batWidth, batHeigth);
-		CDrawnInstance->addDrawObject(batTop);
-	*/
 
 	Ball = new CCircle();
 		Ball->setRadius(ballRadius);
-		Ball->setPosition(Ball->getRadius(), Ball->getRadius());
+		Ball->setPosition(fWindowWidth / 2, fWindowHeigth / 2);
+		Ball->setDynamic(true);
+		Ball->setGravity(0, 0.0001);
 	CDrawnInstance->addDrawObject(Ball);
 
 	CDrawnInstance->initWindow(argc, args);

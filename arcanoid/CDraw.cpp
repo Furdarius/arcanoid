@@ -27,6 +27,7 @@ CDraw::CDraw(const int& _iPosX, const int& _iPosY,
 	iBg_A = _iBg_A;
 	iFrameTime = _iFrameTime;
 	iMatrixMode = _iMatrixMode;
+	fLastFrameTime = 0;
 }
 
 void CDraw::initWindow(int argc, char** argv)
@@ -83,16 +84,24 @@ void CDraw::init()
 
 void CDraw::onRender(void)
 {
-	glClearColor(iBg_R, iBg_G, iBg_B, iBg_A);
-	glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	float _time = clock();
+	float dt = _time - fLastFrameTime;
 
-	for (int i = 0; i < (int)aDrawObjects.size(); ++i)
+	if (dt >= iFrameTime)
 	{
-		aDrawObjects[i]->draw();
-	}
+		glClearColor(iBg_R, iBg_G, iBg_B, iBg_A);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	glFlush();
-	glutSwapBuffers();
+		for (int i = 0; i < (int)aDrawObjects.size(); ++i)
+		{
+			aDrawObjects[i]->Render(dt);
+		}
+
+		glFlush();
+		glutSwapBuffers();
+
+		fLastFrameTime = _time;
+	}
 }
         
 void CDraw::onReshape(int width, int height) {

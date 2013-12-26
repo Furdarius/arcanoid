@@ -6,7 +6,7 @@
 void CRectangle::draw()
 {
 	std::vector<int> color = getColor();
-	std::vector<int> position = getPosition();
+	std::vector<float> position = getPosition();
 	std::vector<int> size = getSize();
 
 	int posX = position[0];

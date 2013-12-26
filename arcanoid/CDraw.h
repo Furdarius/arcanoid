@@ -4,6 +4,8 @@
 #include <GL/glut.h>
 #include <string>
 #include <vector>
+#include <time.h>
+
 #include "CDrawObject.h"
 
 class CDraw 
@@ -16,6 +18,8 @@ class CDraw
 	int iFrameTime; // Time between frames;
 	int iMatrixMode;
 
+	float fLastFrameTime;
+
 	protected:
 		static CDraw *instance;
 		std::vector<CDrawObject*> aDrawObjects;
@@ -24,7 +28,7 @@ class CDraw
 		CDraw(const int& iPosX = 0, const int& iPosY = 0, const int& iWindowW = 640, const int& iWindowH = 480,
 			const std::string& sWindowName = "Title", const int& iInitDisplayMode = GLUT_RGB,
 			const float& iBg_R = 0, const float& iBg_G = 0, const float& iBg_B = 0,
-			const float& iBg_A = 0, const int& iFrameTime = 25, const int& iMatrixMode = GL_PROJECTION);
+			const float& iBg_A = 0, const int& iFrameTime = 4, const int& iMatrixMode = GL_PROJECTION);
 
 		/** Initializes GLUT and registers the callback functions. */
 		void initWindow(int, char**);

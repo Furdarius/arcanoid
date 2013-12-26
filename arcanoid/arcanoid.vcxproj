@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5538E768-1E7E-457F-8F24-89B9973581F1}</ProjectGuid>
+    <ProjectGuid>{5EDD85A6-AC2F-488B-8CD4-E7B1DF6A04DB}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>arcanoid_test</RootNamespace>
+    <RootNamespace>arcanoid</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -76,6 +76,7 @@
   <ItemGroup>
     <ClCompile Include="CCircle.cpp" />
     <ClCompile Include="CDraw.cpp" />
+    <ClCompile Include="CDrawObject.cpp" />
     <ClCompile Include="CGameHud.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="main.cpp" />
