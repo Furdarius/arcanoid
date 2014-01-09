@@ -28,6 +28,8 @@ class CDrawObject
 
 		void RecountPosition(float FrameTimeDelta);
 
+		bool isCollision() { return false; };
+
 		void setColor(int r, int g, int b, int a = 1);
 		std::vector<int> getColor();
 

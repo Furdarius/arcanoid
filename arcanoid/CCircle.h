@@ -31,4 +31,6 @@ class CCircle : public CDrawObject
 
 		void setRadius(float radius);
 		float getRadius();
+
+		bool isCollision();
 };

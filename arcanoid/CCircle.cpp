@@ -35,3 +35,8 @@ float CCircle::getRadius()
 {
 	return fRadius;
 }
+
+bool CCircle::isCollision()
+{
+	return true;
+}
