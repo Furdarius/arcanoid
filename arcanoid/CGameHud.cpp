@@ -1,11 +1,13 @@
 #include <Windows.h>
 #include <iostream>
-
 #include "CGameHud.h"
 
 
 CGameHud::CGameHud(int argc, char** args)
 {
+	this->argc = argc;
+	this->args = args;
+
 	fWindowWidth = 1024;
 	fWindowHeigth = 768;
 
@@ -29,13 +31,24 @@ CGameHud::CGameHud(int argc, char** args)
 		batBottom->setPosition(fWindowWidth / 2 - batWidth / 2, fWindowHeigth - batHeigth - batPadding);
 		batBottom->setSize(batWidth, batHeigth);
 		CDrawnInstance->addDrawObject(batBottom);
-
 	Ball = new CCircle();
 		Ball->setRadius(ballRadius);
 		Ball->setPosition(fWindowWidth / 2, fWindowHeigth / 2);
-		Ball->setDynamic(true);
-		Ball->setGravity(0, 0.0001);
+		Ball->setGravity(0, 0.0007);
 	CDrawnInstance->addDrawObject(Ball);
+}
 
-	CDrawnInstance->initWindow(argc, args);
+void CGameHud::InitWindow()
+{
+	CDrawnInstance->initWindow(this->argc, this->args);
+}
+
+void CGameHud::onKey(unsigned char key, bool down)
+{
+	if (key == 32 && down)
+	{
+		float x = getRandom(-1.0f, 1.0f);
+		float y = getRandom(-1.0f, 1.0f);
+		Ball->setVelocity(x, y);
+	}
 }

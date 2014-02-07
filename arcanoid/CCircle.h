@@ -2,7 +2,6 @@
 
 #include "CDrawObject.h"
 
-
 class CCircle : public CDrawObject
 {
 	int iWidth;
@@ -32,5 +31,5 @@ class CCircle : public CDrawObject
 		void setRadius(float radius);
 		float getRadius();
 
-		bool isCollision();
+		void checkCollision();
 };

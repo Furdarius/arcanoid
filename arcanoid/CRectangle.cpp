@@ -7,7 +7,7 @@ void CRectangle::draw()
 {
 	std::vector<int> color = getColor();
 	std::vector<float> position = getPosition();
-	std::vector<int> size = getSize();
+	std::vector<float> size = getSize();
 
 	int posX = position[0];
 	int posY = position[1];
@@ -25,15 +25,15 @@ void CRectangle::draw()
 	glEnd();
 }
 
-void CRectangle::setSize(int w, int h)
+void CRectangle::setSize(float w, float h)
 {
 	iWidth = w;
 	iHeight = h;
 }
 
-std::vector<int> CRectangle::getSize()
+std::vector<float> CRectangle::getSize()
 {
-	std::vector<int> size(2, 0);
+	std::vector<float> size(2, 0);
 	size[0] = iWidth;
 	size[1] = iHeight;
 	return size;

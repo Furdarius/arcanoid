@@ -88,6 +88,7 @@
     <ClInclude Include="CGameHud.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CVector2D.h" />
+    <ClInclude Include="GameInstance.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

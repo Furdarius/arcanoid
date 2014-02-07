@@ -1,10 +1,11 @@
 #include "CDrawObject.h"
+#include "GameInstance.h"
+#include <iostream>
 
 CDrawObject::CDrawObject(float x, float y, int r, int g, int b, int a)
 {
 	setPosition(x, y);
 	setColor(r, g, b, a);
-	setDynamic(false);
 	setVelocity(0.0, 0.0);
 	setGravity(0.0, 0.0);
 }
@@ -41,16 +42,6 @@ std::vector<float> CDrawObject::getPosition()
 	return position;
 }
 
-void CDrawObject::setDynamic(bool state)
-{
-	bDynamic = state;
-}
-
-bool CDrawObject::getDynamic()
-{
-	return bDynamic;
-}
-
 void CDrawObject::setGravity(float x, float y)
 {
 	gravity.setup(x, y);
@@ -82,9 +73,6 @@ void CDrawObject::RecountPosition(float dt)
 
 void CDrawObject::Render(float dt)
 {
-	if (getDynamic())
-	{
-		RecountPosition(dt);
-	}
+	RecountPosition(dt);
 	draw();
 }

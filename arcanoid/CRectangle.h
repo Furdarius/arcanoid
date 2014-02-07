@@ -2,7 +2,6 @@
 
 #include "CDrawObject.h"
 
-
 class CRectangle : public CDrawObject
 {
 	int iWidth;
@@ -27,6 +26,6 @@ class CRectangle : public CDrawObject
 
 		void draw();
 
-		void setSize(int width, int height);
-		std::vector<int> getSize();
+		void setSize(float width, float height);
+		std::vector<float> getSize();
 };

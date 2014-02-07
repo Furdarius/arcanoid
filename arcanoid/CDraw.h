@@ -5,7 +5,6 @@
 #include <string>
 #include <vector>
 #include <time.h>
-
 #include "CDrawObject.h"
 
 class CDraw 

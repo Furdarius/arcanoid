@@ -2,6 +2,7 @@
 #include <GL/glut.h>
 #include <string>
 #include "CDraw.h"
+#include "GameInstance.h"
 #include <iostream>
 
 CDraw *CDraw::instance = NULL;
@@ -93,9 +94,7 @@ void CDraw::onRender(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		for (int i = 0; i < (int)aDrawObjects.size(); ++i)
-		{
 			aDrawObjects[i]->Render(dt);
-		}
 
 		glFlush();
 		glutSwapBuffers();
@@ -117,19 +116,20 @@ void CDraw::onMouseMove(int x, int y) {
 	printf("MouseMove: x: %d y: %d\n", x, y);
 }
         
-void CDraw::onKeyboardDown( unsigned char key, int x, int y ) 
+void CDraw::onKeyboardDown(unsigned char key, int x, int y) 
 {
     // Subclass and override this method
     printf( "KeyboardDown: %c = %d\n", key, (int)key );
-    if (key==27) { //27 =- ESC key
-            exit (0); 
-    }
+	if (key == 27)
+		exit(0);
+	CGameHudInstance->onKey(key, true);
 }
         
 void CDraw::onKeyboardUp( unsigned char key, int x, int y ) 
 {
     // Subclass and override this method
     printf( "KeyboardUp: %c \n", key );
+	CGameHudInstance->onKey(key, false);
 }
         
 void CDraw::onSpecialKeyboardDown( int key, int x, int y ) 

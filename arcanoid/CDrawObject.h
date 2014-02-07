@@ -1,24 +1,23 @@
 #pragma once
 
 #include <vector>
-
 #include "CVector2D.h"
-
 
 class CDrawObject
 {
-	float iPosX;
-	float iPosY;
+	protected:
+		float iPosX;
+		float iPosY;
 
-	int iColorR;
-	int iColorG;
-	int iColorB;
-	int iColorA;
+		int iColorR;
+		int iColorG;
+		int iColorB;
+		int iColorA;
 
-	bool bDynamic;
+		bool bDynamic;
 
-	CVector2D<float> velocity;
-	CVector2D<float> gravity;
+		CVector2D<float> velocity;
+		CVector2D<float> gravity;
 
 	public:
 		CDrawObject(float x = 0, float y = 0, int r = 1, int g = 1, int b = 1, int a = 1);
@@ -28,16 +27,11 @@ class CDrawObject
 
 		void RecountPosition(float FrameTimeDelta);
 
-		bool isCollision() { return false; };
-
 		void setColor(int r, int g, int b, int a = 1);
 		std::vector<int> getColor();
 
 		void setPosition(float x, float y);
 		std::vector<float> getPosition();
-
-		void setDynamic(bool state);
-		bool getDynamic();
 
 		void setGravity(float x, float y);
 		CVector2D<float> getGravity();
