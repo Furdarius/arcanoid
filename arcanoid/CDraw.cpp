@@ -109,17 +109,18 @@ void CDraw::onReshape(int width, int height) {
 }
         
 void CDraw::onMouseButtonPress(int button, int state, int x, int y) {
-	printf("MouseButtonPress: x: %d y: %d\n", x, y); 
+	//printf("MouseButtonPress: x: %d y: %d\n", x, y); 
 }
         
 void CDraw::onMouseMove(int x, int y) {
-	printf("MouseMove: x: %d y: %d\n", x, y);
+	//printf("MouseMove: x: %d y: %d\n", x, y);
+	CGameHudInstance->onMouseMove(x, y);
 }
         
 void CDraw::onKeyboardDown(unsigned char key, int x, int y) 
 {
     // Subclass and override this method
-    printf( "KeyboardDown: %c = %d\n", key, (int)key );
+    //printf( "KeyboardDown: %c = %d\n", key, (int)key );
 	if (key == 27)
 		exit(0);
 	CGameHudInstance->onKey(key, true);
@@ -128,20 +129,20 @@ void CDraw::onKeyboardDown(unsigned char key, int x, int y)
 void CDraw::onKeyboardUp( unsigned char key, int x, int y ) 
 {
     // Subclass and override this method
-    printf( "KeyboardUp: %c \n", key );
+   // printf( "KeyboardUp: %c \n", key );
 	CGameHudInstance->onKey(key, false);
 }
         
 void CDraw::onSpecialKeyboardDown( int key, int x, int y ) 
 {
     // Subclass and override this method
-    printf( "SpecialKeyboardDown: %d\n", key );
+    //printf( "SpecialKeyboardDown: %d\n", key );
 }
         
 void CDraw::onSpecialKeyboardUp( int key, int x, int y ) 
 {
     // Subclass and override this method        
-    printf( "SpecialKeyboardUp: %d \n", key );
+    // printf( "SpecialKeyboardUp: %d \n", key );
 }
 
 // ******************************************************************

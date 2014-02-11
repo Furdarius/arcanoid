@@ -1,13 +1,13 @@
 #pragma once
 
 #include <vector>
+#include "CPoint2D.h"
 #include "CVector2D.h"
 
 class CDrawObject
 {
 	protected:
-		float iPosX;
-		float iPosY;
+		CPoint2D<float> position;
 
 		int iColorR;
 		int iColorG;
@@ -31,7 +31,8 @@ class CDrawObject
 		std::vector<int> getColor();
 
 		void setPosition(float x, float y);
-		std::vector<float> getPosition();
+		void setPosition(CPoint2D<float> source);
+		CPoint2D<float> getPosition();
 
 		void setGravity(float x, float y);
 		CVector2D<float> getGravity();

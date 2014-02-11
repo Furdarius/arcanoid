@@ -30,12 +30,17 @@ CGameHud::CGameHud(int argc, char** args)
 	batBottom = new CRectangle();
 		batBottom->setPosition(fWindowWidth / 2 - batWidth / 2, fWindowHeigth - batHeigth - batPadding);
 		batBottom->setSize(batWidth, batHeigth);
-		CDrawnInstance->addDrawObject(batBottom);
+		
+	std::vector<float> batBottomSize = batBottom->getSize();
+
 	Ball = new CCircle();
 		Ball->setRadius(ballRadius);
 		Ball->setPosition(fWindowWidth / 2, fWindowHeigth / 2);
 		Ball->setGravity(0, 0.0007);
+		Ball->setColor(1, 0, 0, 1);
+
 	CDrawnInstance->addDrawObject(Ball);
+	CDrawnInstance->addDrawObject(batBottom);
 }
 
 void CGameHud::InitWindow()
@@ -51,4 +56,11 @@ void CGameHud::onKey(unsigned char key, bool down)
 		float y = getRandom(-1.0f, 1.0f);
 		Ball->setVelocity(x, y);
 	}
+}
+
+void CGameHud::onMouseMove(int x, int y)
+{
+	Ball->setPosition(x, y);
+	Ball->setGravity(0.0, 0.0);
+	Ball->setVelocity(0.0, 0.0);
 }

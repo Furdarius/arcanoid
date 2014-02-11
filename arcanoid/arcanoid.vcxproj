@@ -86,6 +86,7 @@
     <ClInclude Include="CDraw.h" />
     <ClInclude Include="CDrawObject.h" />
     <ClInclude Include="CGameHud.h" />
+    <ClInclude Include="CPoint2D.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CVector2D.h" />
     <ClInclude Include="GameInstance.h" />

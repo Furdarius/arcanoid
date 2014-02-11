@@ -1,5 +1,6 @@
 #include "CDrawObject.h"
 #include "GameInstance.h"
+
 #include <iostream>
 
 CDrawObject::CDrawObject(float x, float y, int r, int g, int b, int a)
@@ -30,16 +31,18 @@ std::vector<int> CDrawObject::getColor()
 
 void CDrawObject::setPosition(float x, float y)
 {
-	iPosX = x;
-	iPosY = y;
+	this->position.setup(x, y);
 }
 
-std::vector<float> CDrawObject::getPosition()
+void CDrawObject::setPosition(CPoint2D<float> source)
 {
-	std::vector<float> position(2, 0.0);
-	position[0] = iPosX;
-	position[1] = iPosY;
-	return position;
+	this->position = source;
+}
+
+
+CPoint2D<float> CDrawObject::getPosition()
+{
+	return this->position;
 }
 
 void CDrawObject::setGravity(float x, float y)
@@ -65,10 +68,10 @@ CVector2D<float> CDrawObject::getVelocity()
 void CDrawObject::RecountPosition(float dt)
 {
 	velocity += gravity * dt;
-	std::vector<float> pos = getPosition();
-	pos[0] += dt * (float)velocity.x;
-	pos[1] += dt * (float)velocity.y;
-	setPosition(pos[0], pos[1]);
+	CPoint2D<float> pos = getPosition();
+	pos.x += dt * (float)velocity.x;
+	pos.y += dt * (float)velocity.y;
+	setPosition(pos);
 }
 
 void CDrawObject::Render(float dt)

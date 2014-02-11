@@ -1,6 +1,7 @@
 #pragma once
 
 #include "CDrawObject.h"
+#include "CRectangle.h"
 
 class CCircle : public CDrawObject
 {
@@ -32,4 +33,8 @@ class CCircle : public CDrawObject
 		float getRadius();
 
 		void checkCollision();
+		void CollideCircleVsRectangle(CRectangle* pTileObject);
+		void ResolveCircleTile(float px, float py, int oH, int oV, CRectangle* c);
+		void ProjCircle_Full(float px, float py, int oH, int oV, CRectangle* c);
+		void ReportCollisionVsWorld(float px, float py, int oH, int oV, CRectangle* c);
 };

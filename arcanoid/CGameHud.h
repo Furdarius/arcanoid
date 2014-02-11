@@ -48,4 +48,5 @@ class CGameHud
 
 		// Events
 		void onKey(unsigned char key, bool down);
+		void onMouseMove(int x, int y);
 };
