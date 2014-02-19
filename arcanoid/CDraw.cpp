@@ -94,13 +94,15 @@ void CDraw::onRender(void)
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		for (int i = 0; i < (int)aDrawObjects.size(); ++i)
-			aDrawObjects[i]->Render(dt);
+			if (aDrawObjects[i]->getVisible())
+				aDrawObjects[i]->Render(dt);
 
 		glFlush();
 		glutSwapBuffers();
 
 		fLastFrameTime = _time;
 	}
+	CGameHudInstance->onRender();
 }
         
 void CDraw::onReshape(int width, int height) {
@@ -137,12 +139,14 @@ void CDraw::onSpecialKeyboardDown( int key, int x, int y )
 {
     // Subclass and override this method
     //printf( "SpecialKeyboardDown: %d\n", key );
+	CGameHudInstance->onKey(key, true);
 }
         
 void CDraw::onSpecialKeyboardUp( int key, int x, int y ) 
 {
     // Subclass and override this method        
     // printf( "SpecialKeyboardUp: %d \n", key );
+	CGameHudInstance->onKey(key, false);
 }
 
 // ******************************************************************

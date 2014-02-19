@@ -9,6 +9,7 @@ CDrawObject::CDrawObject(float x, float y, int r, int g, int b, int a)
 	setColor(r, g, b, a);
 	setVelocity(0.0, 0.0);
 	setGravity(0.0, 0.0);
+	setVisible(true);
 }
 
 void CDrawObject::setColor(int r, int g, int b, int a)
@@ -39,10 +40,19 @@ void CDrawObject::setPosition(CPoint2D<float> source)
 	this->position = source;
 }
 
-
 CPoint2D<float> CDrawObject::getPosition()
 {
 	return this->position;
+}
+
+void CDrawObject::setVisible(bool state)
+{
+	this->bVisible = state;
+}
+
+bool CDrawObject::getVisible()
+{
+	return this->bVisible;
 }
 
 void CDrawObject::setGravity(float x, float y)
@@ -68,6 +78,9 @@ CVector2D<float> CDrawObject::getVelocity()
 void CDrawObject::RecountPosition(float dt)
 {
 	velocity += gravity * dt;
+	float maxvel = 5;
+	velocity.x = std::min(velocity.x, maxvel);
+	velocity.y = std::min(velocity.y, maxvel);
 	CPoint2D<float> pos = getPosition();
 	pos.x += dt * (float)velocity.x;
 	pos.y += dt * (float)velocity.y;

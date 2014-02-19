@@ -7,6 +7,14 @@
 #include "CVector2D.h"
 #include "GameInstance.h"
 
+/*
+CCircle::CCircle(float x, float y,
+				float radius,
+				int r, int g, int b, int a) : CDrawObject(x, y, r, g, b, a)
+{
+	setRadius(radius);
+};
+*/
 void CCircle::draw()
 {
 	checkCollision();
@@ -49,27 +57,34 @@ void CCircle::checkCollision()
 	{
 		this->position.x = CGameHudInstance->fWindowWidth - radius;
 		this->velocity.reflect(CVector2D<float>(-1.0f, 0.0f));
-		this->velocity *= 0.8f;
+		//this->velocity *= 0.8f;
 	}
 	else if ((this->position.x - radius) < 0)
 	{
 		this->position.x = radius;
 		this->velocity.reflect(CVector2D<float>(1.0f, 0.0f));
-		this->velocity *= 0.8f;
+		//this->velocity *= 0.8f;
 	}
-
+	/*
 	if ((this->position.y + radius) > CGameHudInstance->fWindowHeigth)
 	{
 		this->position.y = CGameHudInstance->fWindowHeigth - radius;
 		this->velocity.reflect(CVector2D<float>(0.0f, -1.0f));
-		this->velocity *= 0.8f;
+		//this->velocity *= 0.8f;
 	}
 	else if ((this->position.y - radius) < 0)
 	{
 		this->position.y = radius;
 		this->velocity.reflect(CVector2D<float>(0.0f, 1.0f));
-		this->velocity *= 0.8f;
+		//this->velocity *= 0.8f;
 		//this->velocity.x *= 0.9999f; // friction
+	}
+	*/
+	if ((this->position.y - radius) > CGameHudInstance->fWindowHeigth
+		|| (this->position.y + radius) < 0)
+	{
+		this->setPosition(CGameHudInstance->fWindowWidth / 2, CGameHudInstance->fWindowHeigth / 2);
+		this->setVelocity(getRandom(-0.3f, 0.3f), getRandom(-0.3f, 0.3f));
 	}
 
 	CPoint2D<float> batBottomPos = CGameHudInstance->batBottom->getPosition();
@@ -77,6 +92,7 @@ void CCircle::checkCollision()
 	
 
 	this->CollideCircleVsRectangle(CGameHudInstance->batBottom);
+	this->CollideCircleVsRectangle(CGameHudInstance->batTop);
 }
 
 // NEXT METODS INCLUDE COLLISION DETECTION
@@ -102,6 +118,7 @@ void CCircle::CollideCircleVsRectangle(CRectangle* pTileObject)
 		float py = (tyw / 2 + r) - std::abs(dy - tyw / 2); // penetration depth in y
 		if(py >= 0)
 		{
+			this->velocity *= 1.1;
 			//object may be colliding with tile
 						
 			//determine grid/voronoi region of circle center

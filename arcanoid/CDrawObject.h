@@ -16,6 +16,8 @@ class CDrawObject
 
 		bool bDynamic;
 
+		bool bVisible;
+
 		CVector2D<float> velocity;
 		CVector2D<float> gravity;
 
@@ -26,6 +28,9 @@ class CDrawObject
 		virtual void draw() { };
 
 		void RecountPosition(float FrameTimeDelta);
+
+		void setVisible(bool state);
+		bool getVisible();
 
 		void setColor(int r, int g, int b, int a = 1);
 		std::vector<int> getColor();
