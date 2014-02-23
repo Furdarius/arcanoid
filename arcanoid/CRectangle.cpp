@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include <string>
 #include "CRectangle.h"
-#include "GameInstance.h"
+#include "ClientInstance.h"
 
 void CRectangle::draw()
 {
@@ -43,12 +43,8 @@ std::vector<float> CRectangle::getSize()
 
 void CRectangle::checkCollision()
 {
-	if ((this->position.x + this->iWidth) > CGameHudInstance->fWindowWidth)
-	{
-		this->position.x = CGameHudInstance->fWindowWidth - this->iWidth;
-	}
+	if ((this->position.x + this->iWidth) > CClientInstance->getGameHudInstance()->fWindowWidth)
+		this->position.x = CClientInstance->getGameHudInstance()->fWindowWidth - this->iWidth;
 	else if (this->position.x < 0)
-	{
 		this->position.x = 0;
-	}
 }

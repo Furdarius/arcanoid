@@ -1,12 +1,12 @@
-#include "CGameHud.h"
-#include "GameInstance.h"
+#include "CClient.h"
+#include "ClientInstance.h"
 #include <iostream>
 
-CGameHud* CGameHudInstance;
+CClient* CClientInstance;
 
 int main(int argc, char** args)
 {
-	CGameHudInstance = new CGameHud(argc, args);
-	CGameHudInstance->InitWindow();
+	CClientInstance = new CClient();
+	CClientInstance->initGameHud(argc, args);
 	return 0;
 }

@@ -2,7 +2,7 @@
 #include <GL/glut.h>
 #include <string>
 #include "CDraw.h"
-#include "GameInstance.h"
+#include "ClientInstance.h"
 #include <iostream>
 
 CDraw *CDraw::instance = NULL;
@@ -102,7 +102,7 @@ void CDraw::onRender(void)
 
 		fLastFrameTime = _time;
 	}
-	CGameHudInstance->onRender();
+	CClientInstance->getGameHudInstance()->onRender();
 }
         
 void CDraw::onReshape(int width, int height) {
@@ -116,7 +116,7 @@ void CDraw::onMouseButtonPress(int button, int state, int x, int y) {
         
 void CDraw::onMouseMove(int x, int y) {
 	//printf("MouseMove: x: %d y: %d\n", x, y);
-	CGameHudInstance->onMouseMove(x, y);
+	CClientInstance->getGameHudInstance()->onMouseMove(x, y);
 }
         
 void CDraw::onKeyboardDown(unsigned char key, int x, int y) 
@@ -125,28 +125,28 @@ void CDraw::onKeyboardDown(unsigned char key, int x, int y)
     //printf( "KeyboardDown: %c = %d\n", key, (int)key );
 	if (key == 27)
 		exit(0);
-	CGameHudInstance->onKey(key, true);
+	CClientInstance->getGameHudInstance()->onKey(key, true);
 }
         
 void CDraw::onKeyboardUp( unsigned char key, int x, int y ) 
 {
     // Subclass and override this method
    // printf( "KeyboardUp: %c \n", key );
-	CGameHudInstance->onKey(key, false);
+	CClientInstance->getGameHudInstance()->onKey(key, false);
 }
         
 void CDraw::onSpecialKeyboardDown( int key, int x, int y ) 
 {
     // Subclass and override this method
     //printf( "SpecialKeyboardDown: %d\n", key );
-	CGameHudInstance->onKey(key, true);
+	CClientInstance->getGameHudInstance()->onKey(key, true);
 }
         
 void CDraw::onSpecialKeyboardUp( int key, int x, int y ) 
 {
     // Subclass and override this method        
     // printf( "SpecialKeyboardUp: %d \n", key );
-	CGameHudInstance->onKey(key, false);
+	CClientInstance->getGameHudInstance()->onKey(key, false);
 }
 
 // ******************************************************************

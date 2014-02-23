@@ -5,7 +5,7 @@
 #include <string>
 #include "CCircle.h"
 #include "CVector2D.h"
-#include "GameInstance.h"
+#include "ClientInstance.h"
 
 /*
 CCircle::CCircle(float x, float y,
@@ -53,9 +53,9 @@ void CCircle::checkCollision()
 {
 	float radius = getRadius();
 
-	if ((this->position.x + radius) > CGameHudInstance->fWindowWidth)
+	if ((this->position.x + radius) > CClientInstance->getGameHudInstance()->fWindowWidth)
 	{
-		this->position.x = CGameHudInstance->fWindowWidth - radius;
+		this->position.x = CClientInstance->getGameHudInstance()->fWindowWidth - radius;
 		this->velocity.reflect(CVector2D<float>(-1.0f, 0.0f));
 		//this->velocity *= 0.8f;
 	}
@@ -80,19 +80,18 @@ void CCircle::checkCollision()
 		//this->velocity.x *= 0.9999f; // friction
 	}
 	*/
-	if ((this->position.y - radius) > CGameHudInstance->fWindowHeigth
+	if ((this->position.y - radius) > CClientInstance->getGameHudInstance()->fWindowHeigth
 		|| (this->position.y + radius) < 0)
 	{
-		this->setPosition(CGameHudInstance->fWindowWidth / 2, CGameHudInstance->fWindowHeigth / 2);
-		this->setVelocity(getRandom(-0.1f, 0.1f) * 8, getRandom(-0.1f, 0.1f) * 8);
+		CClientInstance->onRoundFinish();
 	}
 
-	CPoint2D<float> batBottomPos = CGameHudInstance->batBottom->getPosition();
-	std::vector<float> batBottomSize = CGameHudInstance->batBottom->getSize();
+	CPoint2D<float> batBottomPos = CClientInstance->getGameHudInstance()->batBottom->getPosition();
+	std::vector<float> batBottomSize = CClientInstance->getGameHudInstance()->batBottom->getSize();
 	
 
-	this->CollideCircleVsRectangle(CGameHudInstance->batBottom);
-	this->CollideCircleVsRectangle(CGameHudInstance->batTop);
+	this->CollideCircleVsRectangle(CClientInstance->getGameHudInstance()->batBottom);
+	this->CollideCircleVsRectangle(CClientInstance->getGameHudInstance()->batTop);
 }
 
 // NEXT METODS INCLUDE COLLISION DETECTION
