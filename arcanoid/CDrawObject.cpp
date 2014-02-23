@@ -1,5 +1,4 @@
 #include "CDrawObject.h"
-#include "GameInstance.h"
 
 #include <iostream>
 
