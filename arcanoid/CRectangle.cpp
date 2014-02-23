@@ -2,9 +2,11 @@
 #include <GL/glut.h>
 #include <string>
 #include "CRectangle.h"
+#include "GameInstance.h"
 
 void CRectangle::draw()
 {
+	this->checkCollision();
 	std::vector<int> color = getColor();
 	CPoint2D<float> position = getPosition();
 	std::vector<float> size = getSize();
@@ -37,4 +39,16 @@ std::vector<float> CRectangle::getSize()
 	size[0] = iWidth;
 	size[1] = iHeight;
 	return size;
+}
+
+void CRectangle::checkCollision()
+{
+	if ((this->position.x + this->iWidth) > CGameHudInstance->fWindowWidth)
+	{
+		this->position.x = CGameHudInstance->fWindowWidth - this->iWidth;
+	}
+	else if (this->position.x < 0)
+	{
+		this->position.x = 0;
+	}
 }

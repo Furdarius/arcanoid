@@ -28,4 +28,6 @@ class CRectangle : public CDrawObject
 
 		void setSize(float width, float height);
 		std::vector<float> getSize();
+
+		void checkCollision();
 };

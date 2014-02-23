@@ -84,7 +84,7 @@ void CCircle::checkCollision()
 		|| (this->position.y + radius) < 0)
 	{
 		this->setPosition(CGameHudInstance->fWindowWidth / 2, CGameHudInstance->fWindowHeigth / 2);
-		this->setVelocity(getRandom(-0.3f, 0.3f), getRandom(-0.3f, 0.3f));
+		this->setVelocity(getRandom(-0.1f, 0.1f) * 8, getRandom(-0.1f, 0.1f) * 8);
 	}
 
 	CPoint2D<float> batBottomPos = CGameHudInstance->batBottom->getPosition();
