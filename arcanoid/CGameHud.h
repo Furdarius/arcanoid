@@ -60,6 +60,8 @@ class CGameHud
 		CGameHud(int argc, char** args);
 
 		void InitWindow();
+		
+		void setReadyIndicatorVisible(bool state);
 
 		// Events
 		void onKey(int key, bool down);

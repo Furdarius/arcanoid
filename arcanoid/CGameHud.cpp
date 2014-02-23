@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include <iostream>
 #include "CGameHud.h"
-
+#include "ClientInstance.h"
 
 CGameHud::CGameHud(int argc, char** args)
 {
@@ -40,21 +40,20 @@ CGameHud::CGameHud(int argc, char** args)
 
 	Ball = new CCircle(fWindowWidth / 2, fWindowHeigth / 2, ballRadius, 1, 0, 0, 1);
 		//Ball->setGravity(0, 0.0007);
-		Ball->setVelocity(getRandom(-0.3f, 0.3f), getRandom(-0.3f, 0.3f));
+		//Ball->setVelocity(getRandom(-0.3f, 0.3f), getRandom(-0.3f, 0.3f));
 	CDrawnInstance->addDrawObject(Ball);
 	CDrawnInstance->addDrawObject(batBottom);
 
 	CDrawnInstance->addDrawObject(batTop);
-	/*
-	int NUM = 1;
+
+	int NUM = CClientInstance->getPlayersNum();
+
 	for (size_t i = 0; i < NUM; ++i)
 	{
-		CCircle *tmpReadyIndicator = new CCircle(fWindowWidth / 2 - (((NUM - 1) * 50) / 2) + (i * 50), fWindowHeigth / 2, 20.0, 1, 1, 0);
+		CCircle *tmpReadyIndicator = new CCircle(fWindowWidth / 2 - (((NUM - 1) * 50) / 2) + (i * 50), fWindowHeigth / 4, 20.0, 1, 1, 0);
 		pReadyCircles.push_back(tmpReadyIndicator);
 		CDrawnInstance->addDrawObject(tmpReadyIndicator);
 	}
-	*/
-
 }
 
 void CGameHud::InitWindow()
@@ -66,11 +65,13 @@ void CGameHud::onKey(int key, bool down)
 {
 	if (key == 32 && down)
 	{
-		Ball->setVelocity(getRandom(-1.0f, 1.0f), getRandom(-1.0f, 1.0f));
+		if (!CClientInstance->isGameStarted())
+			CClientInstance->confirmClientReady();
+		//Ball->setVelocity(getRandom(-1.0f, 1.0f), getRandom(-1.0f, 1.0f));
 	}
-	else if (key == 102)
+	else if (key == 102 && CClientInstance->isGameStarted())
 		rightPressed = down;
-	else if (key == 100)
+	else if (key == 100 && CClientInstance->isGameStarted())
 		leftPressed = down;
 }
 
@@ -99,4 +100,10 @@ void CGameHud::onRender()
 	else
 		this->batBottom->setVelocity(0.0, 0);
 	
+}
+
+void CGameHud::setReadyIndicatorVisible(bool state)
+{
+	for (size_t i = 0; i < this->pReadyCircles.size(); ++i)
+		this->pReadyCircles[i]->setVisible(state);
 }
