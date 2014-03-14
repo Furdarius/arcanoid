@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{5EDD85A6-AC2F-488B-8CD4-E7B1DF6A04DB}</ProjectGuid>
+    <ProjectGuid>{F1663683-ED90-46A6-B21B-F53BB70CE8D1}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>arcanoid</RootNamespace>
+    <RootNamespace>arcanoid_server</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -50,7 +50,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -78,12 +77,8 @@
   <ItemGroup>
     <ClCompile Include="..\Shared\CAddress.cpp" />
     <ClCompile Include="..\Shared\CSocket.cpp" />
-    <ClCompile Include="CCircle.cpp" />
-    <ClCompile Include="CClient.cpp" />
-    <ClCompile Include="CDraw.cpp" />
-    <ClCompile Include="CDrawObject.cpp" />
-    <ClCompile Include="CGameHud.cpp" />
-    <ClCompile Include="CRectangle.cpp" />
+    <ClCompile Include="CPlayer.cpp" />
+    <ClCompile Include="CServer.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -91,16 +86,10 @@
     <ClInclude Include="..\Shared\CSocket.h" />
     <ClInclude Include="..\Shared\SockNet.h" />
     <ClInclude Include="..\Shared\Types.h" />
-    <ClInclude Include="CCircle.h" />
-    <ClInclude Include="CClient.h" />
-    <ClInclude Include="CDraw.h" />
-    <ClInclude Include="CDrawObject.h" />
-    <ClInclude Include="CGameHud.h" />
-    <ClInclude Include="ClientInstance.h" />
-    <ClInclude Include="CPoint2D.h" />
-    <ClInclude Include="CRectangle.h" />
-    <ClInclude Include="CVector2D.h" />
-    <ClInclude Include="SocketInstance.h" />
+    <ClInclude Include="CPlayer.h" />
+    <ClInclude Include="CServer.h" />
+    <ClInclude Include="Instances.h" />
+    <ClInclude Include="stdinc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

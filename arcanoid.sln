@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arcanoid", "arcanoid\arcanoid.vcxproj", "{5EDD85A6-AC2F-488B-8CD4-E7B1DF6A04DB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "arcanoid_server", "arcanoid_server\arcanoid_server.vcxproj", "{F1663683-ED90-46A6-B21B-F53BB70CE8D1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +15,10 @@ Global
 		{5EDD85A6-AC2F-488B-8CD4-E7B1DF6A04DB}.Debug|Win32.Build.0 = Debug|Win32
 		{5EDD85A6-AC2F-488B-8CD4-E7B1DF6A04DB}.Release|Win32.ActiveCfg = Release|Win32
 		{5EDD85A6-AC2F-488B-8CD4-E7B1DF6A04DB}.Release|Win32.Build.0 = Release|Win32
+		{F1663683-ED90-46A6-B21B-F53BB70CE8D1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F1663683-ED90-46A6-B21B-F53BB70CE8D1}.Debug|Win32.Build.0 = Debug|Win32
+		{F1663683-ED90-46A6-B21B-F53BB70CE8D1}.Release|Win32.ActiveCfg = Release|Win32
+		{F1663683-ED90-46A6-B21B-F53BB70CE8D1}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

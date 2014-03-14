@@ -18,59 +18,20 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="CCircle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CDraw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CGameHud.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CDrawObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CRectangle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CClient.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\Shared\CSocket.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Shared\CAddress.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="CServer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CVector2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CRectangle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CGameHud.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CDraw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CCircle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CDrawObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CPoint2D.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CClient.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ClientInstance.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\Shared\CAddress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -80,10 +41,19 @@
     <ClInclude Include="..\Shared\SockNet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CServer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="CPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\Shared\Types.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SocketInstance.h">
+    <ClInclude Include="Instances.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdinc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

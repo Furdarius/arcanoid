@@ -1,10 +1,12 @@
 #include <Windows.h>
 #include <iostream>
+
 #include "CGameHud.h"
 #include "ClientInstance.h"
 
 CGameHud::CGameHud(int argc, char** args)
 {
+
 	this->argc = argc;
 	this->args = args;
 	this->batMovement = MovementState::NONE;
@@ -51,6 +53,8 @@ CGameHud::CGameHud(int argc, char** args)
 	for (size_t i = 0; i < NUM; ++i)
 	{
 		CCircle *tmpReadyIndicator = new CCircle(fWindowWidth / 2 - (((NUM - 1) * 50) / 2) + (i * 50), fWindowHeigth / 4, 20.0, 1, 1, 0);
+		if (i < CClientInstance->getReadyPlayersNum())
+			tmpReadyIndicator->setColor(0, 1, 0, 1);
 		pReadyCircles.push_back(tmpReadyIndicator);
 		CDrawnInstance->addDrawObject(tmpReadyIndicator);
 	}
@@ -70,9 +74,21 @@ void CGameHud::onKey(int key, bool down)
 		//Ball->setVelocity(getRandom(-1.0f, 1.0f), getRandom(-1.0f, 1.0f));
 	}
 	else if (key == 102 && CClientInstance->isGameStarted())
-		rightPressed = down;
+	{
+		if (this->rightPressed != down)
+		{
+			this->rightPressed = down;
+			CClientInstance->onMovementStateChange(this->leftPressed, this->rightPressed);
+		}
+	}
 	else if (key == 100 && CClientInstance->isGameStarted())
-		leftPressed = down;
+	{
+		if (this->leftPressed != down)
+		{
+			this->leftPressed = down;
+			CClientInstance->onMovementStateChange(this->leftPressed, this->rightPressed);
+		}
+	}
 }
 
 void CGameHud::onMouseMove(int x, int y)
@@ -86,19 +102,14 @@ void CGameHud::onMouseMove(int x, int y)
 
 void CGameHud::onRender()
 {
+	/*
 	CPoint2D<float> ballPos = Ball->getPosition();
 	CPoint2D<float> batPos = batTop->getPosition();
 	std::vector<float> batSize = batTop->getSize();
 	batTop->setPosition(ballPos.x - batSize[0] / 2, batPos.y);
+	*/
 
-	if (rightPressed && leftPressed)
-		this->batBottom->setVelocity(0.0, 0);
-	else if (rightPressed)
-		this->batBottom->setVelocity(1.0, 0);
-	else if (leftPressed)
-		this->batBottom->setVelocity(-1.0, 0);
-	else
-		this->batBottom->setVelocity(0.0, 0);
+
 	
 }
 
