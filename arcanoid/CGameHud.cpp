@@ -9,7 +9,6 @@ CGameHud::CGameHud(int argc, char** args)
 
 	this->argc = argc;
 	this->args = args;
-	this->batMovement = MovementState::NONE;
 	this->leftPressed = false;
 	this->rightPressed = false;
 
@@ -108,9 +107,6 @@ void CGameHud::onRender()
 	std::vector<float> batSize = batTop->getSize();
 	batTop->setPosition(ballPos.x - batSize[0] / 2, batPos.y);
 	*/
-
-
-	
 }
 
 void CGameHud::setReadyIndicatorVisible(bool state)

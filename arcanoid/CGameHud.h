@@ -10,12 +10,6 @@ static float getRandom(float from, float to)
 	return from + (to - from) * rand() / RAND_MAX;
 }
 
-enum MovementState
-{
-	NONE = 0,
-    LEFT,
-    RIGHT
-};
 
 class CGameHud
 {
@@ -54,8 +48,6 @@ class CGameHud
 
 		// Ball size:
 		float ballRadius;
-
-		MovementState batMovement;
 
 		CGameHud(int argc, char** args);
 

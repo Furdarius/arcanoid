@@ -40,8 +40,9 @@ class CClient
 		void confirmClientReady();
 
 		void startGame(float velX, float velY);
+		void startRound(float velX, float velY);
 
-		void onRoundFinish();
+		void onRoundFinish(int winPlayerId);
 
 		void setServerAddress(std::string adress);
 		std::string getServerAddress();

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <process.h>
 #include <string>
+#include <ctime>
 #include "CClient.h"
 #include "ClientInstance.h"
 #include "SocketInstance.h"
@@ -23,11 +24,14 @@ unsigned __stdcall fReadSocketDataThread( void* pArguments )
 
 int main(int argc, char** args)
 {
+	srand(time(0));
+
 	if ( !InitializeSockets() )
 	{
 		printf( "failed to initialize sockets\n" );
 		return 1;
 	}
+
 	HANDLE hThread;
     unsigned threadID;
 

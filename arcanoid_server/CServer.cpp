@@ -8,6 +8,7 @@ CServer::CServer()
 	this->iMaxPlayers = 2;
 	this->iReadyPlayers = 0;
 	this->aPlayersList = std::vector< CPlayer > ();
+	this->aGameStateInfo = std::vector< int > (this->iMaxPlayers, 0);
 }
 
 void CServer::addPlayer(CPlayer player)
@@ -32,6 +33,9 @@ void CServer::onDataReceived(CAddress from, char *data, int size)
 		break;
 	case PACKET_TYPES::PLAYER_MOVE_BAT:
 		this->onPlayerMoveBat(from, data[1], data[2], data[3]);
+		break;
+	case PACKET_TYPES::ROUND_FINISHED:
+		this->onRoundFinished(from, data[1], data[2]);
 		break;
 	default:
 		break;
@@ -100,4 +104,57 @@ void CServer::onPlayerMoveBat(CAddress address, int playerID, int velX, int velY
 {
 	const char data[] = { PACKET_TYPES::PLAYER_MOVE_BAT, playerID, velX, velY };
 	this->sendToClients(data, address);
+}
+
+bool CServer::doesStateInfoReady()
+{
+	for (int i = 0; i < this->aGameStateInfo.size(); ++i)
+		if (this->aGameStateInfo[i] <= 0)
+			return 0;
+	return 1;
+}
+
+PACKET_TYPES CServer::getStateInfo()
+{
+	int state = -1;
+	int cnt = 0;
+
+	for (int i = 0; i < this->aGameStateInfo.size(); ++i)
+	{
+		int tmp = this->aGameStateInfo[i];
+		int tmp_cnt = 0;
+		for (int n = i; n < this->aGameStateInfo.size(); ++n)
+			if (this->aGameStateInfo[n] == tmp)
+				++tmp_cnt;
+		if (tmp_cnt > cnt)
+		{
+			state = tmp;
+			cnt = tmp_cnt;
+		}
+	}
+
+	return (PACKET_TYPES)state;
+}
+
+bool CServer::getStateStatus(PACKET_TYPES state)
+{
+	int size = this->aGameStateInfo.size();
+	int cnt = 0;
+	for (int i = 0; i < size; ++i)
+		if (this->aGameStateInfo[i] == state)
+			++cnt;
+	return (cnt >= size / 2);
+}
+
+void CServer::onRoundFinished(CAddress address, int playerID, int winPlayerId)
+{
+	this->aGameStateInfo[playerID - 1] = PACKET_TYPES::ROUND_FINISHED;
+	if (!this->doesStateInfoReady())
+		return;
+
+	if (!this->getStateStatus(PACKET_TYPES::ROUND_FINISHED))
+		return;
+
+	const char data[] = { PACKET_TYPES::START_NEW_ROUND, getRandom(-10, 10), getRandom(-10, 10) };
+	this->sendToClients(data);
 }

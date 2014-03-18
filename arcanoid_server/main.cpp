@@ -3,12 +3,15 @@
 #include "../Shared/SockNet.h"
 #include "CServer.h"
 #include "Instances.h"
+#include <ctime>
 
 CServer* CServerInstance;
 CSocket* CSocketInstance;
 
 int main(int argc, char *argv[])
 {
+	srand(time(0));
+
 	if ( !InitializeSockets() )
 	{
 		printf( "failed to initialize sockets\n" );

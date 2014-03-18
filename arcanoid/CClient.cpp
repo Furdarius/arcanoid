@@ -32,10 +32,18 @@ CRectangle *CClient::getPlayerBatById(int playerID)
 	return (playerID == 1) ? this->CGameHudInstance->batBottom : this->CGameHudInstance->batTop;
 }
 
-void CClient::onRoundFinish()
+void CClient::onRoundFinish(int winPlayerId)
 {
-	this->CGameHudInstance->Ball->setPosition(this->CGameHudInstance->fWindowWidth / 2, this->CGameHudInstance->fWindowHeigth / 2);
-	this->CGameHudInstance->Ball->setVelocity(getRandom(-0.1f, 0.1f) * 8, getRandom(-0.1f, 0.1f) * 8);
+	if (!this->isGameStarted())
+		return;
+
+	this->gameStarted = false;
+
+	const char data[] = { PACKET_TYPES::ROUND_FINISHED, this->getPlayerID(), winPlayerId };
+	this->sendDataToServer(data);
+
+	//this->CGameHudInstance->Ball->setPosition(this->CGameHudInstance->fWindowWidth / 2, this->CGameHudInstance->fWindowHeigth / 2);
+	//this->CGameHudInstance->Ball->setVelocity(getRandom(-0.1f, 0.1f) * 8, getRandom(-0.1f, 0.1f) * 8);
 }
 
 void CClient::setPlayersNum(int num)
@@ -82,14 +90,26 @@ void CClient::confirmClientReady()
 void CClient::startGame(float velX, float velY)
 {
 	this->gameStarted = true;
-	// Инициализация проходит позже чем запуск игры
-	// Нужно сделать ready по пробелу
-	if (this->CGameHudInstance)
-	{
-		this->CGameHudInstance->Ball->setVelocity(velX, velY);
-		this->CGameHudInstance->setReadyIndicatorVisible(false);
-	}
+
+	if (!this->CGameHudInstance)
+		return;
+
+	this->CGameHudInstance->Ball->setPosition(this->CGameHudInstance->fWindowWidth / 2, this->CGameHudInstance->fWindowHeigth / 2);
+	this->CGameHudInstance->Ball->setVelocity(velX, velY);
+	this->CGameHudInstance->setReadyIndicatorVisible(false);
 }
+
+void CClient::startRound(float velX, float velY)
+{
+	this->gameStarted = true;
+
+	if (!this->CGameHudInstance)
+		return;
+
+	this->CGameHudInstance->Ball->setPosition(this->CGameHudInstance->fWindowWidth / 2, this->CGameHudInstance->fWindowHeigth / 2);
+	this->CGameHudInstance->Ball->setVelocity(velX, velY);
+}
+
 
 void CClient::addReadyPlayer()
 {
@@ -165,6 +185,10 @@ void CClient::onDataReceived(CAddress from, char *data, int size)
 	case PACKET_TYPES::PLAYER_MOVE_BAT:
 		std::cout << "Player " << (int)data[1] << " moved bat" << std::endl;
 		this->onPlayerMoveBat(data[1], data[2], data[3]);
+		break;
+	case PACKET_TYPES::START_NEW_ROUND:
+		std::cout << "Start round x=" << (int)data[1] << " y=" << (int)data[2] << std::endl;
+		this->startRound(data[1] / 10.0, data[2] / 10.0);
 		break;
 	default:
 		std::cout << "SERVER SEND: " << (int)data[0] << std::endl;

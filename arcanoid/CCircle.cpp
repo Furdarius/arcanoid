@@ -80,11 +80,10 @@ void CCircle::checkCollision()
 		//this->velocity.x *= 0.9999f; // friction
 	}
 	*/
-	if ((this->position.y - radius) > CClientInstance->getGameHudInstance()->fWindowHeigth
-		|| (this->position.y + radius) < 0)
-	{
-		CClientInstance->onRoundFinish();
-	}
+	if ((this->position.y - radius) > CClientInstance->getGameHudInstance()->fWindowHeigth)
+		CClientInstance->onRoundFinish(1);
+	else if (this->position.y + radius < 0)
+		CClientInstance->onRoundFinish(2);
 
 	CPoint2D<float> batBottomPos = CClientInstance->getGameHudInstance()->batBottom->getPosition();
 	std::vector<float> batBottomSize = CClientInstance->getGameHudInstance()->batBottom->getSize();
